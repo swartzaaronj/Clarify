@@ -83,8 +83,11 @@ def convert_time(ms):
         seconds = (ms - ms % 1000) / 1000
     return [int(hours), int(minutes), int(seconds)]
 
-
-target_jsons = ["./userdata/StreamingHistory0.json", "./userdata/StreamingHistory1.json"]
+# ================STOP HERE, VERY IMPORTANT!!!================
+target_jsons = ["./StreamingHistory0.json"]
+# The parser expects the target director(ies) to be inside of an array.
+# This script was designed with scalability in mind. If you have more JSONS, you can append them!
+# There are more robust ways of finding out the amount of target files, but this script was made in about two hours, three years ago, and hasn't been touched since.
 parsed_data = parse_json_file(target_jsons)
 formatted_data = format_data(parsed_data)
 choice = input("1: Raw Data\n2: Most Streamed Song\n3: Most Streamed Artist\n")
@@ -96,4 +99,5 @@ elif choice == "2":
     print(most_streamed_song(formatted_data))
 elif choice == "3":
     print(most_streamed_artist(formatted_data))
+
 most_streamed_artist(formatted_data)
